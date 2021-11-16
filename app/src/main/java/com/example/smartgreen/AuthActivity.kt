@@ -17,9 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var btnRegistrar: Button
     lateinit var btnIngresar: Button
-    var emailEditText = findViewById<EditText>(R.id.emailEditText)
-    var passwordEditText = findViewById<EditText>(R.id.passwordEditText)
-    val message = emailEditText.text.toString()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +47,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setup(){
-        title = "Autentificación"
+
+        val emailEditText = findViewById<EditText>(R.id.emailEditText)
+        val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
+        //val message = emailEditText.text.toString()
 
         btnRegistrar.setOnClickListener{
             if(emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
 
                         if(it.isSuccessful) {
                             showMostrarDatos()
+                            showAlertA()
                         }
                         else{
                             showAlert()
@@ -67,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+/*
         btnIngresar.setOnClickListener{
             if(emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
 
@@ -81,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private fun showAlert(){
@@ -93,10 +97,19 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun showAlertA(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Registro exitoso.")
+        builder.setMessage("Su registro ha sido exitoso.")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
     private fun showMostrarDatos(){
         val intent = Intent()
         intent.setClassName(this, "com.example.smartgreen.mostrarDatos").apply {
-            putExtra(EXTRA_MESSAGE, message)
+           // putExtra(EXTRA_MESSAGE, message)
         }
         startActivity(intent)
         true
