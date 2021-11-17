@@ -11,83 +11,80 @@
         android:id="@+id/btnNuevo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="51dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#2C837B"
+        android:backgroundTint="#0ee889"
         android:text="NUEVO"
+        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnDelete"
-        app:layout_constraintTop_toTopOf="@+id/btnDelete" />
+        app:layout_constraintStart_toEndOf="@+id/btnEliminar" />
 
     <Button
         android:id="@+id/btnVincular"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="72dp"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#2C837B"
-        android:text="Vincular"
+        android:backgroundTint="#0ee889"
+        android:text="VINCULAR"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSalir"
+        app:layout_constraintEnd_toStartOf="@+id/btnCerrarSesion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
 
     <Button
-        android:id="@+id/btnSalir"
+        android:id="@+id/btnCerrarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="46dp"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#2C837B"
-        android:text="Salir"
+        android:backgroundTint="#0ee889"
+        android:text="SALIR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnVincular"
         app:layout_constraintTop_toBottomOf="@+id/btnNuevo" />
 
     <ImageButton
-        android:id="@+id/btnDelete"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="531dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="48dp"
-        android:background="@drawable/button_rounded2"
-        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
-        app:layout_constraintEnd_toStartOf="@+id/btnNuevo"
-        app:layout_constraintStart_toEndOf="@+id/btnShare"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
-
-    <ImageButton
-        android:id="@+id/btnShare"
+        android:id="@+id/btnSubir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
+        android:layout_marginTop="549dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/button_rounded2"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-        app:layout_constraintStart_toEndOf="@+id/btnDownload"
-        app:layout_constraintTop_toTopOf="@+id/btnDownload"
-        app:srcCompat="@android:drawable/ic_menu_share" />
-
-    <ImageButton
-        android:id="@+id/btnDownload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="531dp"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="46dp"
-        android:background="@drawable/button_rounded2"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/btnVincular"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintEnd_toStartOf="@+id/btnCompartir"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_upload" />
+
+    <ImageButton
+        android:id="@+id/btnCompartir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/button_rounded2"
+        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
+        app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
+        app:layout_constraintStart_toEndOf="@+id/btnSubir"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="549dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/button_rounded2"
+        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
+        app:layout_constraintEnd_toStartOf="@+id/btnNuevo"
+        app:layout_constraintStart_toEndOf="@+id/btnCompartir"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

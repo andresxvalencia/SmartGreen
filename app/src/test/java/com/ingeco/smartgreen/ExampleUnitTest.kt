@@ -1,4 +1,4 @@
-package com.example.smartgreen
+package com.ingeco.smartgreen
 
 import org.junit.Test
 

@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/valen/AndroidStudioProjects/smartGreen/app/src/main/res/layout/activity_auth.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/SmartGreen/app/src/main/res/drawable-v24/button_rounded.xml" value="0.1" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/SmartGreen/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/SmartGreen/app/src/main/res/drawable/splashscreen.xml" value="0.1" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/SmartGreen/app/src/main/res/layout/activity_auth.xml" value="0.264" />
+        <entry key="..\:/Users/valen/AndroidStudioProjects/SmartGreen/app/src/main/res/layout/activity_mostrar_datos.xml" value="0.264" />
       </map>
     </option>
   </component>

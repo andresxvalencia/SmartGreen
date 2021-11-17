@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1058327055834",
-    "project_id": "smartgreen-c7db8",
-    "storage_bucket": "smartgreen-c7db8.appspot.com"
+    "project_number": "79054542991",
+    "project_id": "smartgreen-c9598",
+    "storage_bucket": "smartgreen-c9598.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058327055834:android:4e62908d921eee9863c4e3",
+        "mobilesdk_app_id": "1:79054542991:android:35fa7ffb519a65f008b8fa",
         "android_client_info": {
-          "package_name": "com.example.smartgreen"
+          "package_name": "com.ingeco.smartgreen"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1058327055834-8u49hd44g0vs6ogqbm7djpe3qgtthgum.apps.googleusercontent.com",
+          "client_id": "79054542991-h1c5ccap4ffa2a1oi52t3l9gkjums7ni.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAUsDWhQueBuSY3PmSAHvNOJr739yKtGuk"
+          "current_key": "AIzaSyC2CJgbpxmEsI_JQzI8eph5cXQIq4EA-9Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1058327055834-8u49hd44g0vs6ogqbm7djpe3qgtthgum.apps.googleusercontent.com",
+              "client_id": "79054542991-h1c5ccap4ffa2a1oi52t3l9gkjums7ni.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

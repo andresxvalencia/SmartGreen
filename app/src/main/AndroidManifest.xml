@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.smartgreen">
+    package="com.ingeco.smartgreen">
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,8 @@
             android:name=".mostrarDatos"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AuthActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
