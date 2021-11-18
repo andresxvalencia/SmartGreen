@@ -1,5 +1,9 @@
 package com.ingeco.smartgreen
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -13,20 +17,27 @@ import java.text.DateFormat
 import java.util.*
 
 
+
+
 class mostrarDatos : AppCompatActivity() {
     lateinit var btnCerrarSesion: Button
     lateinit var btnNuevoValor: Button
+    lateinit var btnVincular: Button
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mostrar_datos)
-
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
         btnNuevoValor = findViewById(R.id.btnNuevoValor)
+        btnVincular = findViewById(R.id.btnVincular)
 
         setup()
         visualizarDatos()
         subirDatos()
+        recibirDatosBT()
     }
 
 
@@ -64,4 +75,30 @@ class mostrarDatos : AppCompatActivity() {
 
     }
 
+    private fun recibirDatosBT(){
+
+        btnVincular.setOnClickListener{
+            val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+            if (bluetoothAdapter == null) {
+                // Device doesn't support Bluetooth
+            }
+            val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
+            pairedDevices?.forEach { device ->
+                val deviceName = device.name
+                val deviceHardwareAddress = device.address // MAC address
+
+                val name = findViewById(R.id.deviceName) as TextView
+                name.setText(deviceName);
+                name.setTextColor(Color.RED);
+
+                val address = findViewById(R.id.deviceAddress) as TextView
+                address.setText(deviceHardwareAddress);
+                address.setTextColor(Color.RED);
+
+            }
+        }
+    }
+
+
 }
+
