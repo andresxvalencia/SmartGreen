@@ -16,11 +16,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import org.json.JSONArray
 import java.io.IOException
 import java.io.InputStream
 import java.text.DateFormat
+import java.text.DateFormat.*
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.UUID.randomUUID
+import org.json.JSONObject
+import org.json.JSONException
+
+
+
+
 
 
 class mostrarDatos : AppCompatActivity() {
@@ -61,16 +70,34 @@ class mostrarDatos : AppCompatActivity() {
 
     private fun subirDatos(){
 
-        btnNuevoValor.setOnClickListener{
+        btnNuevoValor.setOnClickListener {
 
-            val hora: String = DateFormat.getDateTimeInstance().format(Date())
+
             val database = Firebase.database
+            val hora: String = getDateInstance().format(Date())
             val phValue = database.getReference("pH")
             val TDSValue = database.getReference("TDS")
-            val timeValue = database.getReference("Time")
-            phValue.setValue(7.5)
-            TDSValue.setValue(1200)
-            timeValue.setValue(hora)
+            val dateValue = database.getReference("Nov 19 2021")
+
+
+
+            data class Data(val Time: String? = null, val TDS: String? = null, val pH: String?) {
+                // Null default values create a no-argument default constructor, which is needed
+                // for deserialization from a DataSnapshot.
+            }
+
+            val newData = Data(hora,"1300","7")
+
+
+            dateValue.setValue(newData)
+
+
+
+
+
+
+
+
 
         }
 
