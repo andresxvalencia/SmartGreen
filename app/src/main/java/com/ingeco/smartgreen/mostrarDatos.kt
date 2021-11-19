@@ -75,10 +75,7 @@ class mostrarDatos : AppCompatActivity() {
 
             val database = Firebase.database
             val hora: String = getDateInstance().format(Date())
-            val phValue = database.getReference("pH")
-            val TDSValue = database.getReference("TDS")
             val dateValue = database.getReference("Nov 19 2021")
-
 
 
             data class Data(val Time: String? = null, val TDS: String? = null, val pH: String?) {
@@ -88,16 +85,7 @@ class mostrarDatos : AppCompatActivity() {
 
             val newData = Data(hora,"1300","7")
 
-
             dateValue.setValue(newData)
-
-
-
-
-
-
-
-
 
         }
 
