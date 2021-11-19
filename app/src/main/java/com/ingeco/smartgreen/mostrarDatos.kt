@@ -3,9 +3,12 @@ package com.ingeco.smartgreen
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothServerSocket
+import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,19 +16,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.io.IOException
+import java.io.InputStream
 import java.text.DateFormat
 import java.util.*
-
-
+import java.util.UUID.randomUUID
 
 
 class mostrarDatos : AppCompatActivity() {
     lateinit var btnCerrarSesion: Button
     lateinit var btnNuevoValor: Button
     lateinit var btnVincular: Button
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,10 +96,11 @@ class mostrarDatos : AppCompatActivity() {
                 address.setText(deviceHardwareAddress);
                 address.setTextColor(Color.RED);
 
+                val mmServerSocket: BluetoothServerSocket? by lazy(LazyThreadSafetyMode.NONE) {
+                    bluetoothAdapter?.listenUsingInsecureRfcommWithServiceRecord("BT", randomUUID ())
+                }
+
             }
         }
     }
-
-
 }
-

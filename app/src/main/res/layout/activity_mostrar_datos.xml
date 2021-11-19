@@ -11,92 +11,60 @@
         android:id="@+id/btnNuevoValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/button_rounded"
         android:backgroundTint="#0ee889"
         android:text="NUEVO"
-        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toEndOf="@+id/btnEliminar" />
+        tools:layout_editor_absoluteX="290dp"
+        tools:layout_editor_absoluteY="553dp" />
 
     <Button
         android:id="@+id/btnVincular"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="201dp"
+        android:layout_height="30dp"
         android:background="@drawable/button_rounded"
         android:backgroundTint="#0ee889"
         android:text="VINCULAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCerrarSesion"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="621dp" />
 
     <Button
         android:id="@+id/btnCerrarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/button_rounded"
         android:backgroundTint="#0ee889"
         android:text="SALIR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNuevoValor" />
+        tools:layout_editor_absoluteX="288dp"
+        tools:layout_editor_absoluteY="623dp" />
 
     <ImageButton
         android:id="@+id/btnSubir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="549dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="25dp"
         android:background="@drawable/button_rounded2"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
-        app:layout_constraintEnd_toStartOf="@+id/btnCompartir"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/ic_menu_upload" />
+        app:srcCompat="@android:drawable/ic_menu_upload"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="548dp" />
 
     <ImageButton
         android:id="@+id/btnCompartir"
         android:layout_width="26dp"
         android:layout_height="47dp"
         android:background="@drawable/button_rounded2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.353"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808"
-        app:srcCompat="@android:drawable/ic_menu_share" />
+        app:srcCompat="@android:drawable/ic_menu_share"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="553dp" />
 
     <ImageButton
         android:id="@+id/btnEliminar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="549dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="25dp"
         android:background="@drawable/button_rounded2"
-        app:layout_constraintBottom_toTopOf="@+id/btnVincular"
-        app:layout_constraintEnd_toStartOf="@+id/btnNuevoValor"
-        app:layout_constraintStart_toEndOf="@+id/btnCompartir"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        tools:layout_editor_absoluteX="227dp"
+        tools:layout_editor_absoluteY="557dp" />
 
     <TextView
         android:id="@+id/Datos"
@@ -107,29 +75,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/deviceName"
         android:layout_width="116dp"
         android:layout_height="36dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="135dp" />
 
     <TextView
         android:id="@+id/deviceAddress"
         android:layout_width="92dp"
         android:layout_height="36dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toEndOf="@+id/deviceName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="135dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
