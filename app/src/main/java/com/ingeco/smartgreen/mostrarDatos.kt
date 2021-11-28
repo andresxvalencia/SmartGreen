@@ -12,6 +12,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.common.util.Strings
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -26,6 +27,10 @@ import java.util.*
 import java.util.UUID.randomUUID
 import org.json.JSONObject
 import org.json.JSONException
+import java.lang.reflect.Array.get
+
+
+
 
 
 
@@ -61,9 +66,10 @@ class mostrarDatos : AppCompatActivity() {
 
     private fun visualizarDatos(){
 
-        val Texto = findViewById(R.id.Datos) as TextView
+        /** val Texto = findViewById(R.id.Datos) as TextView
         Texto.setText("Texto de Prueba");
         Texto.setTextColor(Color.RED);
+        */
 
     }
 
@@ -72,20 +78,54 @@ class mostrarDatos : AppCompatActivity() {
 
         btnNuevoValor.setOnClickListener {
 
+            val cal = Calendar.getInstance()
+
+            val day: String = Integer.toString(cal.get(Calendar.DAY_OF_MONTH))
+            val month: String = Integer.toString(cal.get(Calendar.MONTH)+1)
+            val year: String = Integer.toString(cal.get(Calendar.YEAR))
+
+            val hour: String = Integer.toString(cal.get(Calendar.HOUR_OF_DAY))
+            val minute: String = Integer.toString(cal.get(Calendar.MINUTE))
+            val second: String = Integer.toString(cal.get(Calendar.SECOND))
+
+            val date: String = day + "-" + month + "-" + year
+
+            val time: String = hour + ":" + minute + ":" + second
+
+            val setDate: String = date + "/" + time
 
             val database = Firebase.database
-            val hora: String = getDateInstance().format(Date())
-            val dateValue = database.getReference("Nov 19 2021")
+            val dateValue = database.getReference(setDate)
 
-
-            data class Data(val Time: String? = null, val TDS: String? = null, val pH: String?) {
+            data class Data( val TDS: String? = null, val pH: String?) {
                 // Null default values create a no-argument default constructor, which is needed
                 // for deserialization from a DataSnapshot.
             }
 
-            val newData = Data(hora,"1300","7")
+            val TDS: String = "1300"
+            val pH: String = "7"
+
+
+
+            val newData = Data(TDS,pH)
 
             dateValue.setValue(newData)
+
+            val TextDate = findViewById(R.id.Fecha) as TextView
+            TextDate.setText("Fecha donde se tomaron los datos: " + date);
+            TextDate.setTextColor(Color.BLUE);
+
+            val TextTime = findViewById(R.id.Hora) as TextView
+            TextTime.setText("Hora: " + time);
+            TextTime.setTextColor(Color.BLUE);
+
+            val TextTDS = findViewById(R.id.TDS) as TextView
+            TextTDS.setText("TDS: " + TDS);
+            TextTDS.setTextColor(Color.BLUE);
+
+            val TextpH = findViewById(R.id.pH) as TextView
+            TextpH.setText("pH: " + pH);
+            TextpH.setTextColor(Color.BLUE);
 
         }
 
