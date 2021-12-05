@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -78,19 +79,44 @@ class mostrarDatos : AppCompatActivity() {
 
         btnNuevoValor.setOnClickListener {
 
+
+
             val cal = Calendar.getInstance()
 
             val day: String = Integer.toString(cal.get(Calendar.DAY_OF_MONTH))
             val month: String = Integer.toString(cal.get(Calendar.MONTH)+1)
             val year: String = Integer.toString(cal.get(Calendar.YEAR))
 
-            val hour: String = Integer.toString(cal.get(Calendar.HOUR_OF_DAY))
-            val minute: String = Integer.toString(cal.get(Calendar.MINUTE))
-            val second: String = Integer.toString(cal.get(Calendar.SECOND))
+            val hour: Int = cal.get(Calendar.HOUR_OF_DAY)
+            val minute: Int = cal.get(Calendar.MINUTE)
+            val second: Int = cal.get(Calendar.SECOND)
+
+            var sHour = "0"
+            var sMinute = "0"
+            var sSecond = "0"
+
+
+            sHour = if ((hour >= 0) && (hour <=9 )){
+                "0" + Integer.toString(hour)
+            } else{
+                Integer.toString(hour)
+            }
+
+            sMinute = if ((minute >= 0) && (minute <=9 )){
+                "0" + Integer.toString(minute)
+            } else{
+                Integer.toString(minute)
+            }
+
+            sSecond = if ((second >= 0) && (second <=9 )){
+                "0" + Integer.toString(second)
+            } else{
+                Integer.toString(second)
+            }
 
             val date: String = day + "-" + month + "-" + year
 
-            val time: String = hour + ":" + minute + ":" + second
+            val time: String = sHour + ":" + sMinute + ":" + sSecond
 
             val setDate: String = date + "/" + time
 
@@ -105,7 +131,7 @@ class mostrarDatos : AppCompatActivity() {
             val TDS: String = "1300"
             val pH: String = "7"
 
-
+            var Texto : String = "Hora: " + time + "        pH: " + pH + "      TDS: " + TDS
 
             val newData = Data(TDS,pH)
 
@@ -115,17 +141,13 @@ class mostrarDatos : AppCompatActivity() {
             TextDate.setText("Fecha donde se tomaron los datos: " + date);
             TextDate.setTextColor(Color.BLUE);
 
-            val TextTime = findViewById(R.id.Hora) as TextView
-            TextTime.setText("Hora: " + time);
-            TextTime.setTextColor(Color.BLUE);
+            val TextData = findViewById(R.id.Datos) as TextView
+            TextData.setText(Texto);
+            TextData.setTextColor(Color.BLUE);
+            TextData.setTextSize(20F);
 
-            val TextTDS = findViewById(R.id.TDS) as TextView
-            TextTDS.setText("TDS: " + TDS);
-            TextTDS.setTextColor(Color.BLUE);
 
-            val TextpH = findViewById(R.id.pH) as TextView
-            TextpH.setText("pH: " + pH);
-            TextpH.setTextColor(Color.BLUE);
+            Texto = Texto + "\n"
 
         }
 
