@@ -123,25 +123,12 @@ class mostrarDatos : AppCompatActivity() {
 
             val data: String = "pH: 7 TDS: 1300"
 
-            var Texto : String = data
+            var Texto : String = "HORA: " + time + ": " + data
 
             val newData = Data(data)
 
             dateValue.setValue(newData)
 
-            /**
-
-            val TextDate = findViewById(R.id.Fecha) as TextView
-            TextDate.setText("Fecha donde se tomaron los datos: " + date);
-            TextDate.setTextColor(Color.BLUE);
-
-            val TextData = findViewById(R.id.Datos) as TextView
-            TextData.setText(Texto);
-            TextData.setTextColor(Color.BLUE);
-            TextData.setTextSize(20F);
-            Texto = Texto + "\n"
-
-            */
 
             val arrayAdapter: ArrayAdapter<*>
             var list = arrayOf(
@@ -158,8 +145,6 @@ class mostrarDatos : AppCompatActivity() {
             )
 
             listView.adapter = arrayAdapter
-
-
 
         }
 
