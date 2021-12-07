@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#0ee889"
+        android:backgroundTint="#8AB9DD"
         android:text="NUEVO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="225dp"
         android:layout_height="63dp"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#0ee889"
+        android:backgroundTint="#8AB9DD"
         android:text="VINCULAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_rounded"
-        android:backgroundTint="#0ee889"
+        android:backgroundTint="#8AB9DD"
         android:text="SALIR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +66,8 @@
 
     <ImageButton
         android:id="@+id/btnCompartir"
-        android:layout_width="26dp"
-        android:layout_height="47dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@drawable/button_rounded2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,28 +103,16 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <TextView
-        android:id="@+id/deviceName"
-        android:layout_width="116dp"
-        android:layout_height="36dp"
-        android:text="TextView"
+        android:id="@+id/device"
+        android:layout_width="356dp"
+        android:layout_height="50dp"
+        android:textColor="#488DE3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
-
-    <TextView
-        android:id="@+id/deviceAddress"
-        android:layout_width="92dp"
-        android:layout_height="36dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.719" />
 
     <TextView
         android:id="@+id/Datos"
@@ -137,5 +125,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.271" />
+
+    <ListView
+        android:id="@+id/listDevices"
+        android:layout_width="358dp"
+        android:layout_height="449dp"
+        android:background="#4698EF"
+        android:backgroundTint="#8AB9DD"
+        android:contextClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121" />
+        <!-- Defining where should text be placed. You set you text color here-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
