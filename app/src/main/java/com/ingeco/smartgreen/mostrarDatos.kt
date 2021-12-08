@@ -25,6 +25,8 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.lang.StringBuilder
 import android.system.Os.socket
+import android.util.Log
+
 
 
 
@@ -174,6 +176,7 @@ class mostrarDatos : AppCompatActivity() {
                 list += labeltxt
             }
 
+
             val listView = findViewById<ListView>(R.id.listDevices)
             arrayAdapter = ArrayAdapter(
                 this,
@@ -197,6 +200,128 @@ class mostrarDatos : AppCompatActivity() {
                 val address : String = info.substring(l - 17);
 
             })
+
+
+            val NAME = "BT"
+            val MY_UUID = randomUUID()
+            val TAG = "BT"
+
+            class ConnectThread(device: BluetoothDevice) : Thread() {
+
+                private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
+                    device.createRfcommSocketToServiceRecord(MY_UUID)
+                }
+
+                public override fun run() {
+                    // Cancel discovery because it otherwise slows down the connection.
+                    bluetoothAdapter?.cancelDiscovery()
+
+                    mmSocket?.use { socket ->
+                        // Connect to the remote device through the socket. This call blocks
+                        // until it succeeds or throws an exception.
+                        socket.connect()
+
+                        // The connection attempt succeeded. Perform work associated with
+                        // the connection in a separate thread.
+                        manageMyConnectedSocket(socket)
+                    }
+                }
+
+                private fun manageMyConnectedSocket(socket: BluetoothSocket) {
+
+                    val TAG = "MY_APP_DEBUG_TAG"
+
+// Defines several constants used when transmitting messages between the
+// service and the UI.
+                    val MESSAGE_READ: Int = 0
+                    val MESSAGE_WRITE: Int = 1
+                    val MESSAGE_TOAST: Int = 2
+// ... (Add other message types here as needed.)
+
+                    class MyBluetoothService(
+                        // handler that gets info from Bluetooth service
+                        private val handler: Handler) {
+
+                        private inner class ConnectedThread(private val mmSocket: BluetoothSocket) : Thread() {
+
+                            private val mmInStream: InputStream = mmSocket.inputStream
+                            private val mmOutStream: OutputStream = mmSocket.outputStream
+                            private val mmBuffer: ByteArray = ByteArray(1024) // mmBuffer store for the stream
+
+                            override fun run() {
+                                var numBytes: Int // bytes returned from read()
+
+                                // Keep listening to the InputStream until an exception occurs.
+                                while (true) {
+                                    // Read from the InputStream.
+                                    numBytes = try {
+                                        mmInStream.read(mmBuffer)
+                                    } catch (e: IOException) {
+                                        Log.d(TAG, "Input stream was disconnected", e)
+                                        break
+                                    }
+
+                                    // Send the obtained bytes to the UI activity.
+                                    val readMsg = handler.obtainMessage(
+                                        MESSAGE_READ, numBytes, -1,
+                                        mmBuffer)
+                                    readMsg.sendToTarget()
+                                }
+                            }
+
+                            // Call this from the main activity to send data to the remote device.
+                            fun write(bytes: ByteArray) {
+                                try {
+                                    mmOutStream.write(bytes)
+                                } catch (e: IOException) {
+                                    Log.e(TAG, "Error occurred when sending data", e)
+
+                                    // Send a failure message back to the activity.
+                                    val writeErrorMsg = handler.obtainMessage(MESSAGE_TOAST)
+                                    val bundle = Bundle().apply {
+                                        putString("toast", "Couldn't send data to the other device")
+                                    }
+                                    writeErrorMsg.data = bundle
+                                    handler.sendMessage(writeErrorMsg)
+                                    return
+                                }
+
+                                // Share the sent message with the UI activity.
+                                val writtenMsg = handler.obtainMessage(
+                                    MESSAGE_WRITE, -1, -1, mmBuffer)
+                                writtenMsg.sendToTarget()
+                            }
+
+                            // Call this method from the main activity to shut down the connection.
+                            fun cancel() {
+                                try {
+                                    mmSocket.close()
+                                } catch (e: IOException) {
+                                    Log.e(TAG, "Could not close the connect socket", e)
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                // Closes the client socket and causes the thread to finish.
+                fun cancel() {
+                    try {
+                        mmSocket?.close()
+                    } catch (e: IOException) {
+                        Log.e(TAG, "Could not close the client socket", e)
+                    }
+                }
+            }
+
+            val label = findViewById(R.id.device) as TextView
+
+            val info : String = label.getText().toString()
+
+            val l = info.length
+
+            val address : String = info.substring(l - 17);
 
 
         }
