@@ -21,9 +21,6 @@
             android:name=".BLuetoothActivity"
             android:exported="false" />
         <activity
-            android:name=".BluetoothActivity"
-            android:exported="false" />
-        <activity
             android:name=".SubidaDatos"
             android:exported="false" />
         <activity

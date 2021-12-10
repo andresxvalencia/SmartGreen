@@ -9,31 +9,31 @@
 
     <Button
         android:id="@+id/btnNuevoValor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="236dp"
+        android:layout_height="59dp"
         android:background="@drawable/button_rounded"
         android:backgroundTint="#8AB9DD"
         android:text="NUEVO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
+        app:layout_constraintVertical_bias="0.927" />
 
     <Button
-        android:id="@+id/btnVincular"
-        android:layout_width="225dp"
-        android:layout_height="63dp"
+        android:id="@+id/btnDetener"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
         android:background="@drawable/button_rounded"
         android:backgroundTint="#8AB9DD"
-        android:text="VINCULAR"
+        android:text="DETENER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintVertical_bias="0.813" />
 
     <Button
         android:id="@+id/btnCerrarSesion"
@@ -92,52 +92,31 @@
 
     <TextView
         android:id="@+id/Fecha"
-        android:layout_width="380dp"
-        android:layout_height="41dp"
-        android:text="Prueba"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
-
-    <TextView
-        android:id="@+id/device"
-        android:layout_width="356dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:textColor="#488DE3"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
-
-    <TextView
-        android:id="@+id/Datos"
-        android:layout_width="380dp"
-        android:layout_height="400dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/listDevices"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="449dp"
         android:background="#4698EF"
         android:backgroundTint="#8AB9DD"
         android:contextClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
-        <!-- Defining where should text be placed. You set you text color here-->
+        app:layout_constraintTop_toBottomOf="@+id/Fecha"
+        app:layout_constraintVertical_bias="0.0" />
+    <!-- Defining where should text be placed. You set you text color here-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

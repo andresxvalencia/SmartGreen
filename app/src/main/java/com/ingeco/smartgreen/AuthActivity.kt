@@ -15,8 +15,6 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
         setTheme(R.style.SplashTheme)
         Thread.sleep(2000)
 
@@ -72,14 +70,6 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showAlertA(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Registro exitoso.")
-        builder.setMessage("Su registro ha sido exitoso.")
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
 
     private fun showMostrarDatos(){
         val intent = Intent(this, mostrarDatos::class.java).apply { }
