@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
-
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
@@ -21,6 +20,9 @@ import java.util.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import org.apache.poi.ss.usermodel.Sheet
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.FileOutputStream
 import java.util.UUID
 
 
@@ -28,8 +30,8 @@ class mostrarDatos : AppCompatActivity() {
     lateinit var btnCerrarSesion: Button
     lateinit var btnNuevoValor: Button
     lateinit var btnDetener: Button
+    lateinit var btnDescargar: ImageButton
     var datoNuevo : Boolean = false
-    var detenerDatos : Boolean = false
     lateinit var datoLeido : String
     val list: MutableList<String> = ArrayList()
     val duration = Toast.LENGTH_SHORT
@@ -80,18 +82,16 @@ class mostrarDatos : AppCompatActivity() {
                 }
             }
         }
-
-
         btAdapter = BluetoothAdapter.getDefaultAdapter()
 
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
         btnNuevoValor = findViewById(R.id.btnNuevoValor)
         btnDetener = findViewById(R.id.btnDetener)
+        // btnDescargar = findViewById(R.id.btnDescargar)
         setup()
         subirDatos()
-        detenerMuestra()
+        descargarDatos()
     }
-
 
     private fun setup() {
 
@@ -100,7 +100,6 @@ class mostrarDatos : AppCompatActivity() {
             onBackPressed()
         }
     }
-
 
     private fun subirDatos() {
 
@@ -111,12 +110,6 @@ class mostrarDatos : AppCompatActivity() {
             definirFecha()
 
         }
-
-    }
-
-    private fun detenerMuestra(){
-
-
 
     }
 
@@ -132,10 +125,9 @@ class mostrarDatos : AppCompatActivity() {
 
         val fecha = findViewById<TextView>(R.id.Fecha)
 
-        fecha.setText(" Fecha donde se tomaron los datos: "+ date)
+        fecha.setText(" Fecha cuando se tomaron los datos: "+ date)
 
     }
-
 
     private fun nuevaMuestra(lectura: String) {
 
@@ -220,6 +212,19 @@ class mostrarDatos : AppCompatActivity() {
 
     }
 
+    private fun descargarDatos() {
+
+        val workbook = XSSFWorkbook()
+
+        val sheet: Sheet = workbook.createSheet()
+
+        sheet.createRow(3).createCell(3).setCellValue("Prueba")
+
+        val output = FileOutputStream("./test.slsx")
+
+
+    }
+
 
     @Throws(IOException::class)
     private fun createBluetoothSocket(device: BluetoothDevice): BluetoothSocket {
@@ -270,13 +275,6 @@ class mostrarDatos : AppCompatActivity() {
 
     }
 
-
-
-
-
-
-
-    //Crea la clase que permite crear el evento de conexión
     private class ConnectedThread(socket: BluetoothSocket, handler: Handler?) : Thread() {
         private var bluetoothIn: Handler? = handler
         private val mmInStream: InputStream?
