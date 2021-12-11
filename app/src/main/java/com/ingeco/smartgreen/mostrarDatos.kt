@@ -4,54 +4,67 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.provider.DocumentsContract
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 import java.util.*
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import org.apache.poi.ss.usermodel.Sheet
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import java.io.FileOutputStream
+import com.google.firebase.FirebaseError
+import com.google.firebase.database.*
+
 import java.util.UUID
+import com.google.firebase.database.DataSnapshot
+
+import com.google.firebase.database.ChildEventListener
+
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.database.DatabaseError
+
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.FirebaseDatabase
+import java.io.*
+import java.lang.Exception
+import android.os.Environment
+
+
+
 
 
 class mostrarDatos : AppCompatActivity() {
     lateinit var btnCerrarSesion: Button
     lateinit var btnNuevoValor: Button
     lateinit var btnDetener: Button
+    lateinit var btnSubmitDate: Button
     lateinit var btnDescargar: ImageButton
+    lateinit var btnHistorial: ImageButton
+    lateinit var btnDeleteData: ImageButton
     var datoNuevo : Boolean = false
     lateinit var datoLeido : String
-    val list: MutableList<String> = ArrayList()
+    var list: MutableList<String> = ArrayList()
     val duration = Toast.LENGTH_SHORT
-
-
-    //-------------------------------------------
     var bluetoothIn: Handler? = null
     val handlerState = 0
     private var btAdapter: BluetoothAdapter? = null
     private var btSocket: BluetoothSocket? = null
     private var MyConexionBT: ConnectedThread? = null
-
-    // Identificador unico de servicio - SPP UUID
     private val BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
-
     private var begin = false
     private var stop = false
     private var mensaje = ""
-
-
 
     @SuppressLint("HandlerLeak")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,10 +100,15 @@ class mostrarDatos : AppCompatActivity() {
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
         btnNuevoValor = findViewById(R.id.btnNuevoValor)
         btnDetener = findViewById(R.id.btnDetener)
+        btnHistorial = findViewById(R.id.btnHistorial)
+        btnSubmitDate = findViewById(R.id.btnSubmitDate)
+        btnDeleteData= findViewById(R.id.btnDeleteData)
         // btnDescargar = findViewById(R.id.btnDescargar)
         setup()
         subirDatos()
         descargarDatos()
+        historial()
+        deleteData()
     }
 
     private fun setup() {
@@ -168,28 +186,25 @@ class mostrarDatos : AppCompatActivity() {
 
         val time: String = sHour + ":" + sMinute + ":" + sSecond
 
-        val setDate: String = date + "/" + time
 
         val database = Firebase.database
-        val dateValue = database.getReference(setDate)
+        val dateValue = database.getReference(date)
 
-        data class Data(val data: String?) {
-            // Null default values create a no-argument default constructor, which is needed
-            // for deserialization from a DataSnapshot.
+        data class Data(val data: MutableList <String> = ArrayList()) {
+
         }
 
         val data: String = lectura
 
         var Texto = "HORA: " + time + ": " + data
 
-        val newData = Data(data)
+        val newData = Data(list)
 
         dateValue.setValue(newData)
 
         val arrayAdapter: ArrayAdapter<*>
 
         var lista = list
-
 
         lista.add(Texto)
 
@@ -213,18 +228,108 @@ class mostrarDatos : AppCompatActivity() {
     }
 
     private fun descargarDatos() {
+        
+    }
 
-        val workbook = XSSFWorkbook()
+    private fun historial() {
+        btnHistorial.setOnClickListener {
 
-        val sheet: Sheet = workbook.createSheet()
+            val dateSelected : EditText = findViewById(R.id.editTextDate)
 
-        sheet.createRow(3).createCell(3).setCellValue("Prueba")
+            dateSelected.setVisibility(View.VISIBLE)
+            btnSubmitDate.setVisibility(View.VISIBLE)
 
-        val output = FileOutputStream("./test.slsx")
+            btnSubmitDate.setOnClickListener {
 
+
+                val date = dateSelected.getText().toString()
+
+                val fecha = findViewById<TextView>(R.id.Fecha)
+
+                fecha.setText(" Fecha cuando se tomaron los datos: "+ date)
+
+                class Post() {
+                    var data: MutableList<String> = ArrayList()
+
+                }
+
+                val database = FirebaseDatabase.getInstance()
+                val ref = database.getReference(date)
+
+                ref.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val post = dataSnapshot.getValue<Post>()
+                        val receivedData = post?.data as MutableList<String>
+                        sendData(receivedData)
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        println("The read failed: " + databaseError.code)
+                    }
+                })
+            }
+
+        }
 
     }
 
+    private fun sendData(historyList: MutableList <String>) {
+
+        val arrayAdapter: ArrayAdapter<*>
+
+        var lista = historyList
+
+
+
+        val listView = findViewById<ListView>(R.id.listDevices)
+        arrayAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1, lista
+        )
+
+        listView.adapter = arrayAdapter
+    }
+
+    private fun deleteData(){
+        btnDeleteData.setOnClickListener {
+
+            val fecha = findViewById<TextView>(R.id.Fecha)
+
+            val dateLong = fecha.getText().toString()
+
+            val dateString = dateLong.substring(dateLong.length-10)
+
+            val database = FirebaseDatabase.getInstance()
+
+            val date = database.getReference(dateString+"/data")
+
+            date.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        dataSnapshot.ref.removeValue()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("Delete", "onCancelled", databaseError.toException())
+                }
+            })
+
+            list = arrayListOf()
+            val arrayAdapter: ArrayAdapter<*>
+
+            val listView = findViewById<ListView>(R.id.listDevices)
+            arrayAdapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1, list
+            )
+
+            listView.adapter = arrayAdapter
+
+            val text = "Se ha borrado la muestra."
+
+            val toast = Toast.makeText(applicationContext,text,duration)
+            toast.show()
+        }
+    }
 
     @Throws(IOException::class)
     private fun createBluetoothSocket(device: BluetoothDevice): BluetoothSocket {

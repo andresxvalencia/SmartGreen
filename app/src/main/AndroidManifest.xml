@@ -9,6 +9,7 @@
          ACCESS_COARSE_LOCATION instead.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,12 +18,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity
-            android:name=".BLuetoothActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SubidaDatos"
-            android:exported="false" />
         <activity
             android:name=".mostrarDatos"
             android:exported="true" />
